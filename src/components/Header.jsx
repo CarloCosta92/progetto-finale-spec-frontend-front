@@ -1,6 +1,16 @@
+import { NavLink } from "react-router-dom"
+
 const Header = () => {
     return (
-        <h1>Header</h1>
+        <header className="navbar navbar-dark bg-dark p-4 ">
+            <div className="container">
+
+                <NavLink className="navbar-brand" to="/">
+                    Boolcar
+                </NavLink>
+
+            </div>
+        </header>
     )
 }
 
