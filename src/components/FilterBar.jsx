@@ -5,13 +5,16 @@ const FilterBar = ({
     setCategoryFilter,
     sortBy,
     setSortBy,
-    categories
+    categories,
+    sortOrder,
+    setSortOrder
 }) => {
     return (
-        <div className="row mb-3">
+        <div className="row mb-3 align-items-end">
 
+            {/* Cerca */}
             <div className="col-md-4">
-                <label >Cerca per veicolo</label>
+                <label className="form-label">Cerca per veicolo</label>
                 <input
                     type="text"
                     className="form-control"
@@ -21,8 +24,9 @@ const FilterBar = ({
                 />
             </div>
 
+            {/* Categoria */}
             <div className="col-md-4">
-                <label >Cerca per categoria</label>
+                <label className="form-label">Cerca per categoria</label>
                 <select
                     className="form-select"
                     value={categoryFilter}
@@ -37,18 +41,27 @@ const FilterBar = ({
                 </select>
             </div>
 
-
+            {/* Ordinamento */}
             <div className="col-md-4">
-                <label >Ordina per</label>
-                <select
-                    className="form-select"
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                >
-                    <option value="">Nessun ordinamento</option>
-                    <option value="title">Ordina per Titolo</option>
-                    <option value="category">Ordina per Categoria</option>
-                </select>
+                <label className="form-label">Ordina per</label>
+                <div className="input-group">
+                    <select
+                        className="form-select"
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                    >
+                        <option value="">Nessun ordinamento</option>
+                        <option value="title">Titolo</option>
+                        <option value="category">Categoria</option>
+                    </select>
+                    <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+                    >
+                        {sortOrder === "asc" ? "⬆️" : "⬇️"}
+                    </button>
+                </div>
             </div>
         </div>
     );
