@@ -3,6 +3,7 @@ import './App.css'
 import DefaultLayout from './layout/DeaultLayout'
 import Cars from './pages/Cars'
 import { GlobalProvider } from './context/GlobalContext'
+import CarDetail from './pages/CarDetail'
 
 function App() {
 
@@ -11,7 +12,8 @@ function App() {
       <GlobalProvider>
         <DefaultLayout>
           <Routes>
-            <Route path='/' element={<Cars />} />
+            <Route path="/" element={<Cars />} />
+            <Route path="/cars/:id" element={<CarDetail />} />
           </Routes>
         </DefaultLayout>
       </GlobalProvider>

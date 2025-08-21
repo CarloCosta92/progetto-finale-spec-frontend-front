@@ -1,16 +1,18 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CarItem from "../components/CarItem";
 import FilterBar from "../components/FilterBar";
 import { useCar } from "../context/GlobalContext";
 import Pagination from "../components/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const Cars = () => {
-    const { cars } = useCar();
+    const { cars, loading, error, toggleSelectCar } = useCar();
     const [search, setSearch] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortBy, setSortBy] = useState("");
     const [sortOrder, setSortOrder] = useState("asc");
     const [currentPage, setCurrentPage] = useState(1);
+    const navigate = useNavigate();
 
 
     //scorre l'array e aggiunge all'accumulatore le categorie che non sono ancora state aggiunte,non lo mettessi,avrei tutte le categorie duplicate per la quantità di auto esistenti
@@ -48,6 +50,14 @@ const Cars = () => {
     const currentItems = filteredCars.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(filteredCars.length / itemsPerPage);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [search]);
+
+
+    if (loading) return <div className="container py-4">Caricamento...</div>;
+    if (error) return <div className="container py-4 text-danger">Errore: {error}</div>;
+
 
 
 
@@ -70,6 +80,8 @@ const Cars = () => {
                     <CarItem
                         key={car.id}
                         car={car}
+                        onToggle={() => toggleSelectCar(car.id)}
+                        onClick={() => navigate(`/cars/${car.id}`)}
                     />
                 ))}
             </ul>
