@@ -4,15 +4,17 @@ import FilterBar from "../components/FilterBar";
 import { useCar } from "../context/GlobalContext";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
+import CompareModal from "../components/CompareModal";
 
 const Cars = () => {
-    const { cars, loading, error, toggleSelectCar } = useCar();
+    const { cars, loading, error, toggleSelectCar, selectedIds } = useCar();
     const [search, setSearch] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortBy, setSortBy] = useState("");
     const [sortOrder, setSortOrder] = useState("asc");
     const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
 
     //scorre l'array e aggiunge all'accumulatore le categorie che non sono ancora state aggiunte,non lo mettessi,avrei tutte le categorie duplicate per la quantità di auto esistenti
@@ -87,7 +89,17 @@ const Cars = () => {
             </ul>
             <div className="d-flex justify-content-between">
                 {filteredCars.length !== 0 && <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />}
+
+                <button
+                    className="btn btn-primary my-3 "
+                    disabled={selectedIds.length < 2}
+                    onClick={() => setShowModal(true)}
+                >
+                    Confronta ({selectedIds.length})
+                </button>
             </div>
+
+            <CompareModal show={showModal} onClose={() => setShowModal(false)} />
         </>
 
     )
