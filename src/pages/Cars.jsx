@@ -82,6 +82,7 @@ const Cars = () => {
                     <CarItem
                         key={car.id}
                         car={car}
+                        isSelected={selectedIds.includes(car.id)}
                         onToggle={() => toggleSelectCar(car.id)}
                         onClick={() => navigate(`/cars/${car.id}`)}
                     />

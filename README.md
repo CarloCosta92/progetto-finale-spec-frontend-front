@@ -14,13 +14,11 @@ Pagina di dettaglio per ogni record, con visualizzazione estesa delle sue propri
 Comparatore di 2 record, visualizzati affiancati per confrontarne le caratteristiche.   V
 
 È libera la modalità di selezione: puoi permettere all’utente di aggiungere record al comparatore direttamente dalla lista, dalla pagina di dettaglio, oppure usare un menu a tendina, checkbox o qualsiasi altro sistema.
-
 L’importante è che l’utente possa scegliere 2 record qualsiasi e confrontarli in modo chiaro.
-
-Sistema di preferiti, sempre accessibile e aggiornabile:
+Sistema di preferiti, sempre accessibile e aggiornabile: V
 
 L’utente può aggiungere o rimuovere record dai preferiti in qualsiasi momento
-I preferiti devono essere consultabili in ogni sezione dell’app (es. tramite una sezione dedicata, un’icona fissa, o una sidebar)
+I preferiti devono essere consultabili in ogni sezione dell’app (es. tramite una sezione dedicata, un’icona fissa, o una sidebar) V
 
 🥈 Requisiti Consigliati (Facoltativi)
 

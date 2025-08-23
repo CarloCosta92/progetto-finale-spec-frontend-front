@@ -13,7 +13,7 @@ const CompareModal = ({ show, onClose }) => {
         if (count === 2) return "col-12 col-md-6";
         if (count === 3) return "col-12 col-md-6 col-lg-4";
         if (count === 4) return "col-12 col-md-6 col-lg-3";
-        if (count > 4) return "col-12 col-md-4 col-lg-2";
+        if (count > 4) return "col-12 col-md-6 col-lg-3";
         return "col-12";
     };
 
