@@ -25,7 +25,7 @@ I preferiti devono essere consultabili in ogni sezione dell’app (es. tramite u
 Da affrontare solo dopo aver completato i Requisiti Minimi:
 
 Comparatore di 2 o più record: il layout si adatta per confrontare più elementi affiancati V
-Debounce sulla ricerca, per migliorare la UX ed evitare chiamate API inutili
+Debounce sulla ricerca, per migliorare la UX ed evitare chiamate API inutili  V
 Persistenza dei preferiti (es. salvataggio in localStorage), così che rimangano anche dopo il refresh della pagina
 Gestione degli stati vuoti, come:
 Nessun risultato trovato

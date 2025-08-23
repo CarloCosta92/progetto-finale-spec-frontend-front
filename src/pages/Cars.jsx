@@ -6,15 +6,33 @@ import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import CompareModal from "../components/CompareModal";
 
+function debounce(fn, delay = 300) {
+    let timeoutId;
+    return (...args) => {
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn(...args), delay);
+    };
+}
+
 const Cars = () => {
     const { cars, loading, error, toggleSelectCar, selectedIds } = useCar();
     const [search, setSearch] = useState("");
+    const [inputValue, setInputValue] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortBy, setSortBy] = useState("");
     const [sortOrder, setSortOrder] = useState("asc");
     const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+
+
+    const handleSearch = useMemo(
+        () =>
+            debounce((value) => {
+                setSearch(value);
+            }, 1000),
+        []
+    );
 
 
     //scorre l'array e aggiunge all'accumulatore le categorie che non sono ancora state aggiunte,non lo mettessi,avrei tutte le categorie duplicate per la quantità di auto esistenti
@@ -67,8 +85,11 @@ const Cars = () => {
         <>
             <h1>Pagina principale</h1>
             <FilterBar
-                search={search}
-                setSearch={setSearch}
+                search={inputValue}
+                setSearch={(val) => {
+                    setInputValue(val);
+                    handleSearch(val);
+                }}
                 categoryFilter={categoryFilter}
                 setCategoryFilter={setCategoryFilter}
                 sortBy={sortBy}
