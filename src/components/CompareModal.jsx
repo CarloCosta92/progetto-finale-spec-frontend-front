@@ -20,41 +20,58 @@ const CompareModal = ({ show, onClose }) => {
     if (!show) return null;
 
     return (
-        <div className="modal fade show d-block" tabIndex="-1" role="dialog">
-            <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
-                <div className="modal-content bg-light bg-opacity-70">
-                    <div className="modal-header">
-                        <h5 className="modal-title">Confronto Auto</h5>
-                        <button type="button" className="btn-close" aria-label="Close" onClick={onClose} />
-                    </div>
-                    <div className="modal-body">
-                        {loading ? (
-                            <p>Caricamento auto...</p>
-                        ) : selectedCars.length === 0 ? (
-                            <p>Nessuna auto selezionata.</p>
-                        ) : (
-                            <div className="row g-3">
-                                {selectedCars.map((car) => (
-                                    <div className={counterCar(selectedCars.length)} key={car.id}>
-                                        <div className="card h-100 shadow-sm">
-                                            <img src={car.img} alt={car.title} className="card-img-top" />
-                                            <div className="card-body">
-                                                <h5 className="card-title">{car.title}</h5>
-                                                <p className="text-muted">{car.category}</p>
-                                                <p><strong>Prezzo:</strong> € {car.price}</p>
-                                                <p><strong>Colore:</strong> {car.color}</p>
+        <>
+            <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+                <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div className="modal-content shadow-sm">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Confronto Auto</h5>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                aria-label="Close"
+                                onClick={onClose}
+                            />
+                        </div>
+                        <div className="modal-body">
+                            {loading ? (
+                                <p>Caricamento auto...</p>
+                            ) : selectedCars.length === 0 ? (
+                                <p>Nessuna auto selezionata.</p>
+                            ) : (
+                                <div className="row g-3">
+                                    {selectedCars.map((car) => (
+                                        <div className={counterCar(selectedCars.length)} key={car.id}>
+                                            <div className="card h-100 shadow-sm">
+                                                <img
+                                                    src={car.img}
+                                                    alt={car.title}
+                                                    className="card-img-top"
+                                                />
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{car.title}</h5>
+                                                    <p className="text-muted">{car.category}</p>
+                                                    <p>
+                                                        <strong>Prezzo:</strong> € {car.price}
+                                                    </p>
+                                                    <p>
+                                                        <strong>Colore:</strong> {car.color}
+                                                    </p>
 
-                                                <CarDetails car={car} />
+                                                    <CarDetails car={car} />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div className="modal-backdrop fade show" onClick={onClose}></div>
+        </>
     );
 };
 

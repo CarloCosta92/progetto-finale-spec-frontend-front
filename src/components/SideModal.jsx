@@ -15,7 +15,7 @@ const SideModal = ({ show, handleClose }) => {
     return (
         <>
             <div
-                className="offcanvas offcanvas-end show bg-light bg-opacity-50"
+                className="offcanvas offcanvas-end show bg-light "
                 tabIndex="-1"
                 style={{ visibility: "visible" }}
             >
