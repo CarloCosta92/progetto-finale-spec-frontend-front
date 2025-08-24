@@ -28,9 +28,9 @@ Comparatore di 2 o più record: il layout si adatta per confrontare più element
 Debounce sulla ricerca, per migliorare la UX ed evitare chiamate API inutili  V
 Persistenza dei preferiti (es. salvataggio in localStorage), così che rimangano anche dopo il refresh della pagina
 Gestione degli stati vuoti, come:
-Nessun risultato trovato
-Lista preferiti vuota
-Nessun elemento selezionato nel comparatore
+Nessun risultato trovato V
+Lista preferiti vuota V
+Nessun elemento selezionato nel comparatore  V
 
 🥇 Requisiti Aggiuntivi (Facoltativi)
 

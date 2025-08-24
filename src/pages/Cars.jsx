@@ -108,13 +108,17 @@ const Cars = () => {
                         onClick={() => navigate(`/cars/${car.id}`)}
                     />
                 ))}
+                {currentItems.length === 0 && (
+                    <li className="list-group-item text-center text-muted">
+                        Nessuna auto trovata
+                    </li>
+                )}
             </ul>
             <div className="d-flex justify-content-between">
                 {filteredCars.length !== 0 && <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />}
 
                 <button
                     className="btn btn-primary my-3 "
-                    disabled={selectedIds.length < 2}
                     onClick={() => setShowModal(true)}
                 >
                     Confronta ({selectedIds.length})
