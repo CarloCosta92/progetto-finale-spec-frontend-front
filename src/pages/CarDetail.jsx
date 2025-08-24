@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useCarSelected from "../hooks/useCarSelected";
 import CarDetails from "../components/CarDetails";
+import { useCar } from "../context/GlobalContext";
 
 
 
@@ -8,11 +9,14 @@ const CarDetail = () => {
     const { id } = useParams();
     const { car, loading, error } = useCarSelected(id);
     const navigate = useNavigate();
+    const { toggleSelectCar, isCarSelected, toggleFavorite, isFavorite } = useCar();
+
 
     if (loading) return <div className="container py-4">Caricamento...</div>;
     if (error) return <div className="container py-4 text-danger">Errore: {error}</div>;
     if (!car) return <div className="container py-4">Nessun dettaglio disponibile</div>;
 
+    const favorite = isFavorite(car.id)
 
     return (
         <div className="container py-4 bg-light bg-opacity-50">
@@ -33,6 +37,19 @@ const CarDetail = () => {
                             <p className="mb-3"><strong>Colore:</strong> {car.colour}</p>
 
                             <CarDetails car={car} />
+
+                            <button
+                                className={`btn ${isCarSelected(car.id) ? "btn-danger" : "btn-success"} mt-3 me-2`}
+                                onClick={() => toggleSelectCar(car.id)}
+                            >
+                                {isCarSelected(car.id) ? "Rimuovi dal confronto" : "Aggiungi al confronto"}
+                            </button>
+                            <button
+                                className={`btn ${favorite ? "btn-danger" : "btn-outline-danger"} mt-3`}
+                                onClick={() => toggleFavorite(car)}
+                            >
+                                {favorite ? "Rimuovi dai preferiti ❤️" : "Aggiungi ai preferiti 🤍"}
+                            </button>
 
 
                             <button

@@ -83,7 +83,10 @@ const Cars = () => {
 
     return (
         <>
-            <h1>Pagina principale</h1>
+            <div className="container mt-4 bg-light bg-opacity-50 p-4" >
+                <h1 className="text-center text-danger">Le nostre automobili</h1>
+                <h3 className="text-center">Scopri le nostre migliori occasioni</h3>
+            </div>
             <FilterBar
                 search={inputValue}
                 setSearch={(val) => {

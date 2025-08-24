@@ -1,0 +1,30 @@
+body {
+    background-image: url("./data/jumbo.jpg");
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+.container {
+    border-radius: 5px;
+}
+
+label {
+    font-size: 1.25rem;
+}
+
+.card-img-top {
+    object-fit: contain;
+    max-height: 200px;
+}
+
+.img-detail {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
