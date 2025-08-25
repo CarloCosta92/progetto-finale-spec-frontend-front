@@ -19,7 +19,7 @@ const CarDetail = () => {
     const favorite = isFavorite(car.id)
 
     return (
-        <div className="container py-4 bg-light bg-opacity-50">
+        <div className="container p-0 bg-light bg-opacity-50">
             <div className="card shadow-sm bg-light bg-opacity-50">
                 <div className="row g-0">
                     <div className="col-md-4">
