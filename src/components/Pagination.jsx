@@ -3,7 +3,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     const next = () => onPageChange(Math.min(currentPage + 1, totalPages));
 
     return (
-        <div className="d-flex justify-content-center align-items-center mt-3">
+        <div className="d-flex justify-content-center align-items-center mt-3 text-white">
             <button
                 className="btn me-2"
                 onClick={prev}
@@ -11,9 +11,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             >
                 Prev
             </button>
-            <span className="mx-2">{currentPage} / {totalPages}</span>
+            <span className="mx-2 text-white">{currentPage} / {totalPages}</span>
             <button
-                className="btn ms-2"
+                className="btn ms-2 text-white"
                 onClick={next}
                 disabled={currentPage === totalPages}
             >

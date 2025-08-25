@@ -101,7 +101,7 @@ const Cars = () => {
                 sortOrder={sortOrder}
                 setSortOrder={setSortOrder}
             />
-            <ul className="list-group mt-4 ">
+            <ul className="list-group mt-4 bg-light bg-opacity-50 ">
                 {currentItems.map((car) => (
                     <CarItem
                         key={car.id}
