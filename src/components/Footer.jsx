@@ -15,7 +15,7 @@ const Footer = () => {
                 <hr />
 
                 <div className="text-center">
-                    <p>2025  Comparatore Auto  Tutti i diritti riservati</p>
+                    <p>2025 - Comparatore Auto - Tutti i diritti riservati</p>
                 </div>
             </div>
         </footer>
