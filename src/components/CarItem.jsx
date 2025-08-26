@@ -1,10 +1,17 @@
 import { useCar } from "../context/GlobalContext";
 
-const CarItem = ({ car, isSelected, onToggle, onClick }) => {
-    const { isFavorite, toggleFavorite } = useCar();
+const CarItem = ({ car, isSelected, onToggle, onClick, onEdit }) => {
+    const { toggleFavorite, isFavorite, deleteCar } = useCar();
     const favorite = isFavorite(car.id);
+
+    const handleDelete = () => {
+        if (window.confirm(`Sei sicuro di eliminare "${car.title}"?`)) {
+            deleteCar(car.id);
+        }
+    };
+
     return (
-        <li className="list-group-item d-flex align-items-center justify-content-between bg-light bg-opacity-50 ">
+        <li className="list-group-item d-flex align-items-center justify-content-between bg-light bg-opacity-50">
             <div className="d-flex align-items-center flex-grow-1">
                 <input
                     type="checkbox"
@@ -12,11 +19,11 @@ const CarItem = ({ car, isSelected, onToggle, onClick }) => {
                     checked={isSelected}
                     onChange={() => onToggle(car.id)}
                 />
-                <span>
-                    {car.title}
-                </span>
+                <span>{car.title}</span>
             </div>
+
             <span className="badge bg-primary ms-3">{car.category}</span>
+
             <button
                 onClick={onClick}
                 className="btn btn-sm btn-outline-success ms-3"
@@ -24,6 +31,23 @@ const CarItem = ({ car, isSelected, onToggle, onClick }) => {
             >
                 Dettagli auto
             </button>
+
+            <button
+                onClick={() => onEdit(car)}
+                className="btn btn-sm btn-warning ms-3"
+                title="Modifica auto"
+            >
+                Modifica
+            </button>
+
+            <button
+                onClick={handleDelete}
+                className="btn btn-sm btn-danger ms-3"
+                title="Elimina auto"
+            >
+                Elimina
+            </button>
+
             <button
                 onClick={() => toggleFavorite(car)}
                 className={`btn btn-sm ms-3 ${favorite ? "btn-danger" : "btn-outline-danger"}`}
@@ -32,7 +56,7 @@ const CarItem = ({ car, isSelected, onToggle, onClick }) => {
                 {favorite ? "❤️" : "🤍"}
             </button>
         </li>
-    )
-}
+    );
+};
 
-export default CarItem
+export default CarItem;

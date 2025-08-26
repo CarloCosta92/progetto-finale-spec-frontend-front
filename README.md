@@ -37,9 +37,9 @@ Nessun elemento selezionato nel comparatore  ✅
 Da affrontare solo dopo i Requisiti Consigliati:
 
 Gestione di più risorse nella stessa SPA (es. products e courses), con interfacce distinte o integrate
-CRUD completo dal frontend:
-Creazione di nuovi record
-Modifica di record esistenti
-Eliminazione di record
+CRUD completo dal frontend: ✅
+Creazione di nuovi record ✅
+Modifica di record esistenti ✅
+Eliminazione di record ✅
 Validazione dei campi in input
 

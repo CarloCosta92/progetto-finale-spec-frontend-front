@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import CarItem from "../components/CarItem";
 import FilterBar from "../components/FilterBar";
-import { useCar } from "../context/GlobalContext";
 import Pagination from "../components/Pagination";
-import { useNavigate } from "react-router-dom";
 import CompareModal from "../components/CompareModal";
+import { useCar } from "../context/GlobalContext";
 
-function debounce(fn, delay = 300) {
+function debounce(fn, delay = 1000) {
     let timeoutId;
     return (...args) => {
         if (timeoutId) clearTimeout(timeoutId);
@@ -16,15 +17,15 @@ function debounce(fn, delay = 300) {
 
 const Cars = () => {
     const { cars, loading, error, toggleSelectCar, selectedIds } = useCar();
+    const navigate = useNavigate();
+
     const [search, setSearch] = useState("");
     const [inputValue, setInputValue] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortBy, setSortBy] = useState("");
     const [sortOrder, setSortOrder] = useState("asc");
     const [currentPage, setCurrentPage] = useState(1);
-    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
-
 
     const handleSearch = useMemo(
         () =>
@@ -34,10 +35,6 @@ const Cars = () => {
         []
     );
 
-
-    //scorre l'array e aggiunge all'accumulatore le categorie che non sono ancora state aggiunte,non lo mettessi,avrei tutte le categorie duplicate per la quantità di auto esistenti
-    //utilizzo useMemo per non ripetere la funzione
-
     const categories = useMemo(() => {
         return cars.reduce((acc, car) => {
             if (!acc.includes(car.category)) acc.push(car.category);
@@ -45,9 +42,6 @@ const Cars = () => {
         }, []);
     }, [cars]);
 
-
-    //funzione per cercare,filtrare e ordinare le auto
-    //useMemo per gestire il re-render solo al cambiamento delle cose
     const filteredCars = useMemo(() => {
         return cars
             .filter(car =>
@@ -60,10 +54,9 @@ const Cars = () => {
                 if (!sortBy) return 0;
                 const value = a[sortBy].toString().localeCompare(b[sortBy].toString());
                 return sortOrder === "asc" ? value : -value;
-            })
+            });
     }, [cars, search, categoryFilter, sortBy, sortOrder]);
 
-    //gestione delle pagine,ho settato 10 elementi per pagina
     const itemsPerPage = 10;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -72,37 +65,42 @@ const Cars = () => {
 
     useEffect(() => {
         setCurrentPage(1);
-    }, [search]);
-
+    }, [search, categoryFilter]);
 
     if (loading) return <div className="container py-4">Caricamento...</div>;
     if (error) return <div className="container py-4 text-danger">Errore: {error}</div>;
 
-
-
-
     return (
-        <>
-            <div className="container mt-4 bg-light bg-opacity-50 p-4" >
-                <h1 className="text-center text-danger">Le nostre automobili</h1>
-                <h3 className="text-center">Scopri le nostre migliori occasioni</h3>
-                <p className="text-center">Seleziona due o più auto conteporanemaente</p>
+        <div className="container my-4">
+            <div className="text-center bg-light bg-opacity-50 mb-4">
+                <h1 className="text-danger">Le nostre automobili</h1>
+                <h3>Scopri le nostre migliori occasioni</h3>
+                <p>Seleziona due o più auto contemporaneamente</p>
             </div>
-            <FilterBar
-                search={inputValue}
-                setSearch={(val) => {
-                    setInputValue(val);
-                    handleSearch(val);
-                }}
-                categoryFilter={categoryFilter}
-                setCategoryFilter={setCategoryFilter}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-                categories={categories}
-                sortOrder={sortOrder}
-                setSortOrder={setSortOrder}
-            />
-            <ul className="list-group mt-4 bg-light bg-opacity-50 ">
+
+            {/* FilterBar e pulsante Nuova Auto */}
+            <div className="d-flex justify-content-between align-items-center mb-3">
+                <FilterBar
+                    search={inputValue}
+                    setSearch={(val) => { setInputValue(val); handleSearch(val); }}
+                    categoryFilter={categoryFilter}
+                    setCategoryFilter={setCategoryFilter}
+                    sortBy={sortBy}
+                    setSortBy={setSortBy}
+                    categories={categories}
+                    sortOrder={sortOrder}
+                    setSortOrder={setSortOrder}
+                />
+                <button
+                    className="btn btn-success ms-3"
+                    onClick={() => navigate("/cars/new")}
+                >
+                    Nuova Auto
+                </button>
+            </div>
+
+            {/* Lista auto */}
+            <ul className="list-group mt-4 bg-light bg-opacity-50">
                 {currentItems.map((car) => (
                     <CarItem
                         key={car.id}
@@ -110,19 +108,29 @@ const Cars = () => {
                         isSelected={selectedIds.includes(car.id)}
                         onToggle={() => toggleSelectCar(car.id)}
                         onClick={() => navigate(`/cars/${car.id}`)}
+                        onEdit={() => navigate(`/cars/${car.id}/edit`)}
                     />
                 ))}
+
                 {currentItems.length === 0 && (
                     <li className="list-group-item text-center text-muted">
                         Nessuna auto trovata
                     </li>
                 )}
             </ul>
-            <div className="d-flex justify-content-between">
-                {filteredCars.length !== 0 && <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />}
+
+            {/* Paginazione e pulsante Confronta */}
+            <div className="d-flex justify-content-between align-items-center mt-3">
+                {filteredCars.length !== 0 && (
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
+                )}
 
                 <button
-                    className="btn btn-primary my-3 "
+                    className="btn btn-primary"
                     onClick={() => setShowModal(true)}
                 >
                     Confronta ({selectedIds.length})
@@ -130,9 +138,8 @@ const Cars = () => {
             </div>
 
             <CompareModal show={showModal} onClose={() => setShowModal(false)} />
-        </>
+        </div>
+    );
+};
 
-    )
-}
-
-export default Cars
+export default Cars;

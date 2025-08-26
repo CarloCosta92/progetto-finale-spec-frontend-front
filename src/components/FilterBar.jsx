@@ -14,7 +14,7 @@ const FilterBar = ({
 
             {/* Cerca */}
             <div className="col-md-4">
-                <label className="form-label">Cerca per veicolo</label>
+                <label className="form-label text-white">Cerca per veicolo</label>
                 <input
                     type="text"
                     className="form-control"
@@ -26,7 +26,7 @@ const FilterBar = ({
 
             {/* Categoria */}
             <div className="col-md-4">
-                <label className="form-label">Cerca per categoria</label>
+                <label className="form-label text-white">Cerca per categoria</label>
                 <select
                     className="form-select"
                     value={categoryFilter}
@@ -43,7 +43,7 @@ const FilterBar = ({
 
             {/* Ordinamento */}
             <div className="col-md-4">
-                <label className="form-label">Ordina per</label>
+                <label className="form-label text-white">Ordina per</label>
                 <div className="input-group">
                     <select
                         className="form-select"
