@@ -1,4 +1,5 @@
 import { useCar } from "../context/GlobalContext";
+import DropdownOptions from "./DropdownOptions";
 
 const CarItem = ({ car, isSelected, onToggle, onClick, onEdit }) => {
     const { toggleFavorite, isFavorite, deleteCar } = useCar();
@@ -33,28 +34,15 @@ const CarItem = ({ car, isSelected, onToggle, onClick, onEdit }) => {
             </button>
 
             <button
-                onClick={() => onEdit(car)}
-                className="btn btn-sm btn-warning ms-3"
-                title="Modifica auto"
-            >
-                Modifica
-            </button>
-
-            <button
-                onClick={handleDelete}
-                className="btn btn-sm btn-danger ms-3"
-                title="Elimina auto"
-            >
-                Elimina
-            </button>
-
-            <button
                 onClick={() => toggleFavorite(car)}
                 className={`btn btn-sm ms-3 ${favorite ? "btn-danger" : "btn-outline-danger"}`}
                 title={favorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
             >
                 {favorite ? "❤️" : "🤍"}
             </button>
+
+            <DropdownOptions car={car} onEdit={onEdit} onDelete={handleDelete} />
+
         </li>
     );
 };
