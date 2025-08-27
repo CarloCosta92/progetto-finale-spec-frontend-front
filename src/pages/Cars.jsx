@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import CarItem from "../components/CarItem";
 import FilterBar from "../components/FilterBar";
 import Pagination from "../components/Pagination";
@@ -79,7 +78,7 @@ const Cars = () => {
             </div>
 
             {/* FilterBar e pulsante Nuova Auto */}
-            <div className="d-flex justify-content-between align-items-center mb-3">
+            <div className="mb-3">
                 <FilterBar
                     search={inputValue}
                     setSearch={(val) => { setInputValue(val); handleSearch(val); }}
@@ -90,13 +89,8 @@ const Cars = () => {
                     categories={categories}
                     sortOrder={sortOrder}
                     setSortOrder={setSortOrder}
+                    onAdd={() => navigate("/cars/new")}
                 />
-                <button
-                    className="btn btn-success ms-3"
-                    onClick={() => navigate("/cars/new")}
-                >
-                    Nuova Auto
-                </button>
             </div>
 
             {/* Lista auto */}

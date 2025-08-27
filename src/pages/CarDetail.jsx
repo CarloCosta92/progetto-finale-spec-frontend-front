@@ -53,7 +53,7 @@ const CarDetail = () => {
 
 
                             <button
-                                className="btn btn-primary mt-3 ms-3"
+                                className="btn btn-secondary mt-3 ms-3"
                                 onClick={() => navigate("/")}
                             >
                                 Torna indietro

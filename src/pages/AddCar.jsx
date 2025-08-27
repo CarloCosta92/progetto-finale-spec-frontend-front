@@ -25,6 +25,7 @@ const AddCar = () => {
         <div className="container my-4 text-white">
             <h2>Aggiungi nuova auto</h2>
             <CarForm onSubmit={handleSubmit} />
+
         </div>
     );
 };

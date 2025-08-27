@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CarForm = ({ initialData = {}, onSubmit }) => {
+    const navigate = useNavigate();
     const [car, setCar] = useState({
         title: initialData.title || "",
         brand: initialData.brand || "",
@@ -163,7 +165,19 @@ const CarForm = ({ initialData = {}, onSubmit }) => {
                 </div>
             </div>
 
-            <button type="submit" className="btn btn-primary">Salva</button>
+            <div className="d-flex justify-content-between mt-3">
+                <button type="submit" className="btn btn-primary">
+                    Salva
+                </button>
+
+                <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => navigate("/")}
+                >
+                    Torna indietro
+                </button>
+            </div>
         </form>
     );
 };

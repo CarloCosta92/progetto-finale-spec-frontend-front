@@ -7,13 +7,14 @@ const FilterBar = ({
     setSortBy,
     categories,
     sortOrder,
-    setSortOrder
+    setSortOrder,
+    onAdd // nuova prop opzionale
 }) => {
     return (
         <div className="row mb-3 align-items-end">
 
             {/* Cerca */}
-            <div className="col-md-4">
+            <div className="col-md-3">
                 <label className="form-label text-white">Cerca per veicolo</label>
                 <input
                     type="text"
@@ -25,7 +26,7 @@ const FilterBar = ({
             </div>
 
             {/* Categoria */}
-            <div className="col-md-4">
+            <div className="col-md-3">
                 <label className="form-label text-white">Cerca per categoria</label>
                 <select
                     className="form-select"
@@ -42,7 +43,7 @@ const FilterBar = ({
             </div>
 
             {/* Ordinamento */}
-            <div className="col-md-4">
+            <div className="col-md-3">
                 <label className="form-label text-white">Ordina per</label>
                 <div className="input-group">
                     <select
@@ -62,6 +63,19 @@ const FilterBar = ({
                         {sortOrder === "asc" ? "⬆️" : "⬇️"}
                     </button>
                 </div>
+            </div>
+
+            {/* Bottone Nuova Auto */}
+            <div className="col-md-3 d-flex justify-content-end">
+                {onAdd && (
+                    <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={onAdd}
+                    >
+                        Inserisci Nuova Auto
+                    </button>
+                )}
             </div>
         </div>
     );
