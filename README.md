@@ -41,5 +41,5 @@ CRUD completo dal frontend: ✅
 Creazione di nuovi record ✅
 Modifica di record esistenti ✅
 Eliminazione di record ✅
-Validazione dei campi in input
+Validazione dei campi in input✅
 

@@ -33,7 +33,7 @@ const CarDetail = () => {
                         <div className="card-body">
                             <h3 className="card-title">{car.title}</h3>
                             <p className="text-muted mb-2">{car.category}</p>
-                            <p className="mb-1"><strong>Prezzo:</strong> € {car.price}</p>
+                            <p className="mb-1"><strong>Prezzo:</strong>  {car.price}</p>
                             <p className="mb-3"><strong>Colore:</strong> {car.colour}</p>
 
                             <CarDetails car={car} />

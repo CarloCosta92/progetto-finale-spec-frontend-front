@@ -31,23 +31,36 @@ const CarForm = ({ initialData = {}, onSubmit }) => {
         const { name, value } = e.target;
         setCar(prev => ({
             ...prev,
-            [name]: value.trim() // sempre stringa senza spazi
+            [name]: value.trim()
         }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Se img è vuoto o undefined, inviamo sempre stringa
-        const payload = { ...car, img: car.img || "" };
+        const contenitoreErrori = {};
 
-        if (!payload.title || !payload.brand || !payload.model || !payload.price) {
-            setError("Titolo, Marca, Modello e Prezzo sono obbligatori");
+        // Campi obbligatori
+        if (!car.title) contenitoreErrori.title = "Titolo obbligatorio";
+        if (!car.brand) contenitoreErrori.brand = "Marca obbligatoria";
+        if (!car.model) contenitoreErrori.model = "Modello obbligatorio";
+        if (!car.price) contenitoreErrori.price = "Prezzo obbligatorio";
+
+        // Validazione numeri
+        if (car.year && (Number(car.year) < 1900 || Number(car.year) > 2025)) contenitoreErrori.year = "Anno deve essere tra 1900 e 2025";
+        if (car.doors && Number(car.doors) < 0) contenitoreErrori.doors = "Numero porte non valido";
+        if (car.seats && Number(car.seats) < 0) contenitoreErrori.seats = "Numero posti non valido";
+
+        // Mostra errori globali se presenti
+        if (JSON.stringify(contenitoreErrori) !== "{}") {
+            // Unisci tutti i messaggi in un’unica stringa per alert globale
+            const messaggi = Object.values(contenitoreErrori).join(". ");
+            setError(messaggi);
             return;
         }
 
         setError("");
-        onSubmit(payload);
+        onSubmit({ ...car, img: car.img || "" });
     };
 
     return (
