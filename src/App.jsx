@@ -18,8 +18,6 @@ function App() {
             <Route path="/cars/new" element={<AddCar />} />
             <Route path="/cars/:id/edit" element={<EditCar />} />
             <Route path="/cars/:id" element={<CarDetail />} />
-
-
           </Routes>
         </DefaultLayout>
       </GlobalProvider>
