@@ -1,45 +1,50 @@
-🥉 Requisiti Minimi
+# 🚗 Boolcar – Comparatore di Automobili  
 
-Per considerare il progetto completo, devono essere implementate almeno queste funzionalità:
+![React](https://img.shields.io/badge/React-18-blue?logo=react)  
+![Node.js](https://img.shields.io/badge/Node.js-Backend-green?logo=node.js)  
 
-Gestione di una risorsa definita in types.ts  ✅
 
-Lista dei record, che mostra solo le proprietà principali title e category, e include: ✅
+Boolcar è una **Single Page Application (SPA)** sviluppata in **React**, progettata per confrontare automobili **nuove e usate** in modo semplice, veloce e intuitivo.  
+L’app consente di cercare, filtrare, ordinare e confrontare più modelli di auto, oltre a gestire preferiti e operazioni CRUD complete.  
 
-Barra di ricerca per cercare nei titoli (title) ✅
-Filtro per categoria (category) ✅
-Ordinamento alfabetico per title o category (A-Z e Z-A) ✅
-Pagina di dettaglio per ogni record, con visualizzazione estesa delle sue proprietà (es. price, description, brand, ecc.) ✅
+---
 
-Comparatore di 2 record, visualizzati affiancati per confrontarne le caratteristiche.   ✅
+## 📌 Funzionalità  
 
-È libera la modalità di selezione: puoi permettere all’utente di aggiungere record al comparatore direttamente dalla lista, dalla pagina di dettaglio, oppure usare un menu a tendina, checkbox o qualsiasi altro sistema.
-L’importante è che l’utente possa scegliere 2 record qualsiasi e confrontarli in modo chiaro.
-Sistema di preferiti, sempre accessibile e aggiornabile: ✅
+### 🥉 Requisiti Minimi  
+- Gestione di una risorsa (`Car`) definita in `types.ts`.  
+- Lista auto con proprietà principali: `title` e `category`.  
+- Barra di **ricerca** per filtrare per titolo.  
+- **Filtro per categoria**.  
+- **Ordinamento** A-Z / Z-A su `title` e `category`.  
+- Pagina di **dettaglio auto** con informazioni estese.  
+- **Comparatore di 2 auto** affiancate.  
+- **Sistema preferiti** sempre accessibile.  
 
-L’utente può aggiungere o rimuovere record dai preferiti in qualsiasi momento
-I preferiti devono essere consultabili in ogni sezione dell’app (es. tramite una sezione dedicata, un’icona fissa, o una sidebar) ✅
+### 🥈 Requisiti Consigliati  
+- Comparatore di **più auto** (layout adattivo).  
+- **Debounce sulla ricerca** per migliorare UX.  
+- Persistenza preferiti con `localStorage`.  
+- Gestione stati vuoti:  
+  - Nessun risultato trovato.  
+  - Lista preferiti vuota.  
+  - Nessun elemento selezionato nel comparatore.  
 
-🥈 Requisiti Consigliati (Facoltativi)
+### 🥇 Requisiti Aggiuntivi   
+- CRUD completo dal frontend:  
+  - Creazione, modifica, eliminazione record.  
+  - Validazione campi in input.  
 
-Da affrontare solo dopo aver completato i Requisiti Minimi:
+---
 
-Comparatore di 2 o più record: il layout si adatta per confrontare più elementi affiancati ✅
-Debounce sulla ricerca, per migliorare la UX ed evitare chiamate API inutili  ✅
-Persistenza dei preferiti (es. salvataggio in localStorage), così che rimangano anche dopo il refresh della pagina
-Gestione degli stati vuoti, come:
-Nessun risultato trovato ✅
-Lista preferiti vuota ✅
-Nessun elemento selezionato nel comparatore  ✅
+## 🛠️ Tecnologie Utilizzate  
+- **Frontend**: [React](https://reactjs.org/), [React Router](https://reactrouter.com/)  
+- **Styling**: Bootstrap 
+- **Gestione stato**: React Hooks + Context API  
+- **Persistenza locale**: `localStorage`  
+- **Backend**: REST API (Node.js + Express / JSON Server)  
 
-🥇 Requisiti Aggiuntivi (Facoltativi)
 
-Da affrontare solo dopo i Requisiti Consigliati:
 
-Gestione di più risorse nella stessa SPA (es. products e courses), con interfacce distinte o integrate
-CRUD completo dal frontend: ✅
-Creazione di nuovi record ✅
-Modifica di record esistenti ✅
-Eliminazione di record ✅
-Validazione dei campi in input✅
+
 
